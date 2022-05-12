@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.concurrent.TimeUnit;
 
@@ -45,6 +44,14 @@ public class TestCase1 {
                 timeouts().
                 implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[2]")).click();
+
+WebElement product1 = driver.findElement(By.cssSelector("li.item:nth-child(1) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
+WebElement product2 = driver.findElement(By.cssSelector("li.item:nth-child(2) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
+WebElement probuct3 = driver.findElement(By.cssSelector("li.item:nth-child(3) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
+
+String [] arr = {product1.getText(), product2.getText(), probuct3.getText()};
+
+
 
 
 
