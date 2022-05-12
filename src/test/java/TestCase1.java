@@ -6,18 +6,11 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 
 public class TestCase1 {
 
-// Steps:
-// 6. verify all products are sorted by name
-// Expected results:
-// 1. Text 'THIS IS DEMO SITE' shown in home page
-// 2. Title 'MOBILE' is shown on mobile list page
-// 3. all 3 products sorted by name
 
     @Test
     public void testNumberOne(){
@@ -29,6 +22,10 @@ public class TestCase1 {
 
         Assert.assertEquals(driver.getTitle(), "Home page"); //2
 
+        WebElement header = driver.findElement(By.cssSelector(".page-title > h2:nth-child(1)"));
+
+        Assert.assertEquals(header.getText().toUpperCase().trim(), "THIS IS DEMO SITE FOR ".toUpperCase().trim()); // 1. Text 'THIS IS DEMO SITE' shown in home page
+
         WebElement mobileButton = driver.findElement(
                 By.cssSelector("#nav > ol > li.level0.nav-1.first > a"));
 
@@ -36,6 +33,7 @@ public class TestCase1 {
         mobileButton.click(); //3
 
         Assert.assertEquals(driver.getTitle(), "Mobile"); //4
+                                                                    // Title 'MOBILE' is shown on mobile list page
 
         WebElement sortMenu =
                 driver.findElement(
@@ -44,8 +42,14 @@ public class TestCase1 {
         driver.manage().
                 timeouts().
                 implicitlyWait(5, TimeUnit.SECONDS);
+
         driver.findElement(By.xpath(
                 "/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[2]")).click(); // sort by name
+
+        // verify item in MOBILE list can be sorted by name
+
+        Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/mobile.html?dir=asc&order=name");
+
 
 //        driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[3]")).click(); // sort by price
 
@@ -57,12 +61,7 @@ String first = product1.getText().toUpperCase();
 String second = product2.getText().toUpperCase();
 String third = probuct3.getText().toUpperCase();
 
-Assert.assertTrue((first.charAt(0) < second.charAt(0)) && (first.charAt(0) < third.charAt(0))); // verify item in MOBILE list can be sorted by name
-
-
-
-
-
+Assert.assertTrue((first.charAt(0) < second.charAt(0)) && (first.charAt(0) < third.charAt(0))); //6. verify all products are sorted by name
 
     }
 }
