@@ -6,11 +6,12 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 
 public class TestCase1 {
-// verify item in MOBILE list can be sorted by name
+
 // Steps:
 // 6. verify all products are sorted by name
 // Expected results:
@@ -43,13 +44,20 @@ public class TestCase1 {
         driver.manage().
                 timeouts().
                 implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[2]")).click();
+        driver.findElement(By.xpath(
+                "/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[2]")).click(); // sort by name
+
+//        driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[3]")).click(); // sort by price
 
 WebElement product1 = driver.findElement(By.cssSelector("li.item:nth-child(1) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
 WebElement product2 = driver.findElement(By.cssSelector("li.item:nth-child(2) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
 WebElement probuct3 = driver.findElement(By.cssSelector("li.item:nth-child(3) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
 
-String [] arr = {product1.getText(), product2.getText(), probuct3.getText()};
+String first = product1.getText().toUpperCase();
+String second = product2.getText().toUpperCase();
+String third = probuct3.getText().toUpperCase();
+
+Assert.assertTrue((first.charAt(0) < second.charAt(0)) && (first.charAt(0) < third.charAt(0))); // verify item in MOBILE list can be sorted by name
 
 
 
