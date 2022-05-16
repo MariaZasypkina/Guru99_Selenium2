@@ -63,6 +63,5 @@ String second = product2.getText().toUpperCase();
 String third = probuct3.getText().toUpperCase();
 
 Assert.assertTrue((first.charAt(0) < second.charAt(0)) && (first.charAt(0) < third.charAt(0))); //6. verify all products are sorted by name
-  System.out.println("Success!!!");
     }
 }
