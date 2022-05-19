@@ -41,7 +41,7 @@ public class TestCase1 {
         sortMenu.click();
         driver.manage().
                 timeouts().
-                implicitlyWait(5, TimeUnit.SECONDS);
+                implicitlyWait(6, TimeUnit.SECONDS);
 
         driver.findElement(By.xpath(
                 "/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[2]")).click(); // sort by name
