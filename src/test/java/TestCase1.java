@@ -50,7 +50,6 @@ public class TestCase1 {
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/mobile.html?dir=asc&order=name");
 
-
 //        driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select/option[3]")).click(); // sort by price
 
 WebElement product1 = driver.findElement(By.cssSelector("li.item:nth-child(1) > div:nth-child(2) > h2:nth-child(1) > a:nth-child(1)"));
