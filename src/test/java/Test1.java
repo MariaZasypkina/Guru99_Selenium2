@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class Test1 {
 
@@ -18,13 +20,11 @@ public void CheckXPathTest(){
         driver.findElement(By.xpath("//input[contains(@value,'PUB')]")).click();
         driver.findElement(By.xpath("//input[contains(@type, 'text')]")).sendKeys("Anythink Libraries");
         driver.findElement(By.xpath("//button[contains(@class,'search-btn')]")).click();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
-        WebElement result = driver.findElement(By.xpath("//div[@class='js-result-container result-container']"));
-        System.out.println(result.getText());
-//        WebElement locationList = driver.findElement(By.xpath("//li[@class='location-item']"));
-//        Assert.assertTrue(locationList.getText().toLowerCase().contains("anythink libraries"));
+        WebElement result = driver.findElement(By.xpath("//div[@class='header-message']"));
 
-        //Assert.assertEquals(driver.findElement(By.xpath("//span[contains(@class,'item-value location-item-value')]")).getText().toLowerCase(), "anythink libraries");
+        Assert.assertTrue(result.getText().toLowerCase().contains("we found"));
 
 
         driver.quit();
