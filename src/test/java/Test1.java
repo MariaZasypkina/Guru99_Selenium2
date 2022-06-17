@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class Test1 {
 
 @Test
-public void CheckXPathTest(){
+public void librarySearchHappyPath(){
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
@@ -23,10 +23,7 @@ public void CheckXPathTest(){
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
         WebElement result = driver.findElement(By.xpath("//div[@class='header-message']"));
-
         Assert.assertTrue(result.getText().toLowerCase().contains("we found"));
-
-
         driver.quit();
 }
 }
